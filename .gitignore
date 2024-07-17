@@ -1,1 +1,5 @@
 build/
+
+# Ignore compiled programs/libraries
+unittest
+libbench.so

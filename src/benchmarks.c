@@ -18,7 +18,7 @@ bench_t* init_bench(int k, double pval, int maxiter){
     ret->pval = pval;
     ret->avg = 0.0;
     ret->var = 0.0;
-    ret->t = t_k_gamma(pval, k);
+    ret->t = t_k_gamma(pval, k-1.0);
     ret->c = calloc(1, sizeof(chrono_t));
     ret->ci = 0.0;
 

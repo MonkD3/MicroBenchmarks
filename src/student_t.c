@@ -7,10 +7,10 @@
  *
  * NOTE: if dof > 3510 then an overflow happens
  */
-double t_k_gamma(double pval, double dof){
+double t_k_gamma(const double pval, const double dof){
     const double dx = 1e-5; // Integration discretization
     const double target = 1.0 - 0.5*pval; // Target for the integration
-    const double k = dof - 1.0;
+    const double k = dof;
 
     double t = 0.0; // Will hold the value : P(T <= t) = target
 

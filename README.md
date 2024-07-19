@@ -47,10 +47,22 @@ The real CI can be computed as `[avg - ci; avg + ci]`. There is a probability `1
 
 In mathematical terms, if $T$ is the random variable representing the time taken by a single run of your function/snippet, with mean $\bar{T}$ then :
 
-$$ \mathbb{P}[\bar{T} - ci < T \bar{T} + ci] <= 1 - p_{eff} $$
+$$ \mathbb{P}[\bar{T} - ci < \bar{T} + ci] <= 1 - p_{eff} $$
+
+## How to compile
+
+### From source 
+
+```bash 
+git clone https://github.com/MonkD3/MicroBenchmarks && cd MicroBenchmarks
+autoreconf --install
+./configure
+make
+make install
+```
 
 ## References 
 
-The benchmarking method is adapted from the following sources.
+The benchmarking method is adapted from the following source(s).
 
 > Andy Georges, Dries Buytaert, and Lieven Eeckhout. 2007. Statistically rigorous java performance evaluation. SIGPLAN Not. 42, 10 (October 2007), 57–76. https://doi.org/10.1145/1297105.1297033

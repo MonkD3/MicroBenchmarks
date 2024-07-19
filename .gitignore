@@ -1,5 +1,15 @@
-build/
 
 # Ignore compiled programs/libraries
-unittest
-libbench.so
+*.o
+*.lo
+*.la 
+*.so
+build/
+
+# Ignore Autotools files 
+build-aux/
+m4/
+autom4te.cache/
+*.in
+aclocal.m4
+configure

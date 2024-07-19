@@ -5,15 +5,14 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Global status
-bench_status_et bench_status = BENCH_NOT_STARTED;
-
-bench_t* init_bench(int k, double pval, int maxiter){
+bench_t* bench_init(int k, int maxiter, double pval){
     
     bench_t* ret = calloc(1, sizeof(bench_t));
+
     ret->k = k;
     ret->put = 0;
     ret->maxiter = maxiter;
+    ret->status = BENCH_NOT_STARTED;
     ret->times = calloc(k, sizeof(double));
     ret->pval = pval;
     ret->avg = 0.0;
@@ -25,7 +24,7 @@ bench_t* init_bench(int k, double pval, int maxiter){
     return ret;
 }
 
-void destroy_bench(bench_t* restrict bench){
+void bench_destroy(bench_t* restrict bench){
     free(bench->times);
     free(bench->c);
     free(bench);
@@ -56,11 +55,11 @@ bench_status_et bench_stop_measure(bench_t* b){
     b->ci = sqrt(b->var / b->k) * b->t;
     b->peff = b->ci / b->avg;
 
-    if (b->put < b->k) return BENCH_CONTINUE; // Not enough samples
+    if (b->put < b->k) return (b->status = BENCH_CONTINUE); // Not enough samples
     printf("Avg: %f, std: %f, p_eff = %f, ci = %f\n", b->avg, sqrt(b->var), b->peff, b->ci);
-    if (b->peff <= b->pval) return BENCH_FINISHED; // P-value reached
-    if (b->put >= b->maxiter) return BENCH_MAX_ITER; // Maxiter reached
+    if (b->peff <= b->pval) return (b->status = BENCH_FINISHED); // P-value reached
+    if (b->put >= b->maxiter) return (b->status = BENCH_MAX_ITER); // Maxiter reached
 
     // Stopping conditions not reached, continue
-    return BENCH_CONTINUE;
+    return (b->status = BENCH_CONTINUE);
 }

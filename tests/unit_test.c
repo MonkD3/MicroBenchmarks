@@ -80,7 +80,7 @@ void test_init_bench(void){
     const double k = 10;
     const double pval = 0.05;
 
-    bench_t* b = init_bench(k, pval, maxiter);
+    bench_t* b = bench_init(k, maxiter, pval);
 
     CU_ASSERT_DOUBLE_EQUAL(b->pval, pval, 1e-6);
     CU_ASSERT_DOUBLE_EQUAL(b->k, k, 1e-6);
@@ -95,7 +95,7 @@ void test_init_bench(void){
         CU_ASSERT_EQUAL(b->times[i], 0.0);
     }
 
-    destroy_bench(b);
+    bench_destroy(b);
 }
 
 int main(void){

@@ -7,6 +7,13 @@ This small library is for people like me who ...
 - Are often timing parts of C code
 - Always rewrite the same functions to time their code
 
+## Dependencies 
+
+- Autotools (Autoconf, Automake, ...)
+- M4
+- CUnit
+- A `C` compiler
+
 ## Quickstart
 
 Benchmarking functions/snippets is as simple as :

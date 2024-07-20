@@ -7,15 +7,15 @@
  *
  * NOTE: if dof > 3510 then an overflow happens
  */
-double t_k_gamma(const double pval, const double dof){
-    const double dx = 1e-5; // Integration discretization
-    const double target = 1.0 - 0.5*pval; // Target for the integration
-    const double k = dof;
+double t_k_gamma(double const pval, double const dof){
+    double const dx = 1e-5; // Integration discretization
+    double const target = 1.0 - 0.5*pval; // Target for the integration
+    double const k = dof;
 
     double t = 0.0; // Will hold the value : P(T <= t) = target
 
     // Ratio of gamma functions
-    const double r = (double) (1.0/sqrt(k*M_PI)) * tgammal((long double) 0.5*(k+1.0))/tgammal( (long double) 0.5*k);
+    double const r = (double) (1.0/sqrt(k*M_PI)) * tgammal((long double) 0.5*(k+1.0))/tgammal( (long double) 0.5*k);
 
     // Cumulative density function of Student's T distribution at t=0.0
     double integral = 0.5;

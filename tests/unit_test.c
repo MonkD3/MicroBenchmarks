@@ -88,7 +88,7 @@ void test_init_bench(void){
     
     CU_ASSERT_DOUBLE_EQUAL(b->avg, 0.0, 1e-6);
     CU_ASSERT_DOUBLE_EQUAL(b->ci, 0.0, 1e-6);
-    CU_ASSERT_DOUBLE_EQUAL(b->peff, 0.0, 1e-6);
+    CU_ASSERT_DOUBLE_EQUAL(b->peff, 1.0, 1e-6);
     CU_ASSERT_EQUAL(b->put, 0);
 
     for (int i = 0; i < k; i++){

@@ -29,10 +29,19 @@ typedef struct {
     chrono_t* c;   // Chronometer
 } bench_t;
 
-bench_t* bench_init(int k, int maxiter, double pval);
+__attribute__((nonnull(1)))
 void bench_destroy(bench_t* b);
 
-void bench_start_measure(bench_t* b);
-bench_status_et bench_stop_measure(bench_t* b);
+__attribute__((malloc, malloc (bench_destroy, 1))) 
+bench_t* bench_init(int const k, int const maxiter, double const pval);
+
+__attribute__((nonnull(1)))
+void bench_reset(bench_t* const b);
+
+__attribute__((nonnull(1)))
+void bench_start_measure(bench_t* const b);
+
+__attribute__((nonnull(1)))
+bench_status_et bench_stop_measure(bench_t* const b);
 
 #endif // BENCHMARKS_H

@@ -9,10 +9,15 @@ This small library is for people like me who ...
 
 ## Dependencies 
 
+For building the library :
+
 - Autotools (Autoconf, Automake, ...)
 - M4
-- CUnit
 - A `C` compiler
+
+For testing suite (`make check`, optional) :
+
+- CUnit
 
 ## Quickstart
 
@@ -54,7 +59,7 @@ The real CI can be computed as `[avg - ci; avg + ci]`. There is a probability `1
 
 In mathematical terms, if $T$ is the random variable representing the time taken by a single run of your function/snippet, with mean $\bar{T}$ then :
 
-$$ \mathbb{P}[\bar{T} - ci < \bar{T} + ci] <= 1 - p_{eff} $$
+$$ \mathbb{P}[\bar{T} - ci < T < \bar{T} + ci] \geq 1 - p_{eff} $$
 
 ## How to compile
 
@@ -65,6 +70,16 @@ git clone https://github.com/MonkD3/MicroBenchmarks && cd MicroBenchmarks
 autoreconf --install
 ./configure
 make
+make install
+```
+
+### From release tarball
+
+```bash 
+wget https://github.com/MonkD3/MicroBenchmarks/releases/download/<tag>/<tarball_name>.tar.gz
+tar -xvf <tarball_name>.tar.gz && cd <tarball_name>
+./configure 
+make 
 make install
 ```
 

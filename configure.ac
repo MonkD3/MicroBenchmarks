@@ -6,12 +6,18 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 
+# Check for programs
+AC_PROG_CC([gcc cc clang])
+AM_PROG_AR
+
+
+# This is not portable, check to use AX_CHECK_COMPILE_FLAG
+# from the autotools archives. Later use AC_ARG_ENABLE to also 
+# add optimization flags
+CFLAGS="$CFLAGS -Wall -Werror -Wall -Wshadow -Wold-style-definition -Wmissing-prototypes"
+
 # Init libtool
 LT_INIT
-
-# Check for programs : GCC and Libtool
-AC_PROG_CC([gcc])
-AM_PROG_AR
 
 AC_CHECK_LIB([cunit], [CU_initialize_registry], [CUNITLIB=-lcunit])
 AC_SUBST([CUNITLIB])

@@ -10,12 +10,6 @@ AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 AC_PROG_CC([gcc cc clang])
 AM_PROG_AR
 
-
-# This is not portable, check to use AX_CHECK_COMPILE_FLAG
-# from the autotools archives. Later use AC_ARG_ENABLE to also 
-# add optimization flags
-CFLAGS="$CFLAGS -Wall -Werror -Wall -Wshadow -Wold-style-definition -Wmissing-prototypes"
-
 # Init libtool
 LT_INIT
 
@@ -23,7 +17,6 @@ AC_CHECK_LIB([cunit], [CU_initialize_registry], [CUNITLIB=-lcunit])
 AC_SUBST([CUNITLIB])
 AC_CHECK_LIB([m], [tgammal], [MATHLIB=-lm])
 AC_SUBST([MATHLIB])
-
 
 # Check the existence of one of the source files
 AC_CONFIG_SRCDIR([src/benchmarks.c])
@@ -36,5 +29,10 @@ AC_CONFIG_FILES([
  src/Makefile
  tests/Makefile
 ])
+
+# This is not portable, check to use AX_CHECK_COMPILE_FLAG
+# from the autotools archives. Later use AC_ARG_ENABLE to also 
+# add optimization flags
+CFLAGS="-Wall -Werror -Wall -Wshadow -Wold-style-definition -Wmissing-prototypes $CFLAGS"
 
 AC_OUTPUT

@@ -1,6 +1,7 @@
 #ifndef BENCHMARKS_H
 #define BENCHMARKS_H
 #include <time.h>
+#include <stdio.h>
 
 typedef enum {
     BENCH_FINISHED    = 0,
@@ -41,6 +42,8 @@ __attribute__((nonnull(1))) void bench_start_measure(bench_t* const b);
 
 __attribute__((nonnull(1))) bench_status_et bench_stop_measure(bench_t* const b);
 
+void bench_output(bench_t const* const b, FILE* out);
+
 #ifdef BENCHMARK
 #define BENCH_START(b) \
     do {               \
@@ -49,11 +52,12 @@ __attribute__((nonnull(1))) bench_status_et bench_stop_measure(bench_t* const b)
 #define BENCH_STOP(b)          \
         bench_stop_measure(b); \
     } while (BENCH_CONTINUE == b->status);
+#define BENCH_OUTPUT(b) bench_output(b, stdout);
 #else
-#pragma message("The benchmarking macros BENCH_START() and BENCH_STOP() are disabled.\n \
-          If you wish to enable them, use the compiler flag -DBENCHMARK")
+#pragma message("The benchmarking macros are disabled. If you wish to enable them, use the compiler flag -DBENCHMARK")
 #define BENCH_START(b)
 #define BENCH_STOP(b)
+#define BENCH_OUTPUT(b) 
 #endif
 
 #endif  // BENCHMARKS_H
